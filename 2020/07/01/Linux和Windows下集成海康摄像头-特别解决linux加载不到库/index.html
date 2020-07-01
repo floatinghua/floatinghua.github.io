@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Linux和Windows下集成海康摄像头(特别解决linux加载不到库) | 唐杠杠的个人博客 | Stay hungry,Stay foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="工具,springboot,集成,海康">
+    <meta name="description" content="问题最近要集成海康摄像头部署到linux服务器，但是一直调用不到so文件，所以记录下解决过程，由于自己不熟悉jna，所以请轻喷，Stay Hungry,Stay Foolish. 海康sdk官方下载地址 前期准备至于为什么先讲linux等下就知道了，linux的sdk下载下来目录如下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux和Windows下集成海康摄像头(特别解决linux加载不到库)">
+<meta property="og:url" content="https://floatinghua.github.io/2020/07/01/Linux%E5%92%8CWindows%E4%B8%8B%E9%9B%86%E6%88%90%E6%B5%B7%E5%BA%B7%E6%91%84%E5%83%8F%E5%A4%B4-%E7%89%B9%E5%88%AB%E8%A7%A3%E5%86%B3linux%E5%8A%A0%E8%BD%BD%E4%B8%8D%E5%88%B0%E5%BA%93/index.html">
+<meta property="og:site_name" content="唐杠杠的个人博客">
+<meta property="og:description" content="问题最近要集成海康摄像头部署到linux服务器，但是一直调用不到so文件，所以记录下解决过程，由于自己不熟悉jna，所以请轻喷，Stay Hungry,Stay Foolish. 海康sdk官方下载地址 前期准备至于为什么先讲linux等下就知道了，linux的sdk下载下来目录如下：">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528173418663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528173443515.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528173517359.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528173551673.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528173624768.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528173635709.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528173704738.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020052817405633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528174109430.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200528174502106.png">
+<meta property="article:published_time" content="2020-07-01T03:38:55.000Z">
+<meta property="article:modified_time" content="2020-07-01T04:05:46.132Z">
+<meta property="article:author" content="Tang">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="springboot">
+<meta property="article:tag" content="集成">
+<meta property="article:tag" content="海康">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200528173418663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70">
+    
+        <link rel="alternate" type="application/atom+xml" title="唐杠杠的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Tang</h5>
+          <a href="mailto:465132483@qq.com" title="465132483@qq.com" class="mail">465132483@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/floatinghua" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://maiz.me/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                导师
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Linux和Windows下集成海康摄像头(特别解决linux加载不到库)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Linux和Windows下集成海康摄像头(特别解决linux加载不到库)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-07-01T03:38:55.000Z" itemprop="datePublished" class="page-time">
+  2020-07-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/linux/">linux</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/linux/%E8%BF%90%E7%BB%B4/">运维</a></li></ul></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#前期准备"><span class="post-toc-number">2.</span> <span class="post-toc-text">前期准备</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#linux准备工作"><span class="post-toc-number">3.</span> <span class="post-toc-text">linux准备工作</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#win准备和集成"><span class="post-toc-number">4.</span> <span class="post-toc-text">win准备和集成</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Linux和Windows下集成海康摄像头-特别解决linux加载不到库"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Linux和Windows下集成海康摄像头(特别解决linux加载不到库)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-07-01 11:38:55" datetime="2020-07-01T03:38:55.000Z"  itemprop="datePublished">2020-07-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/linux/">linux</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/linux/%E8%BF%90%E7%BB%B4/">运维</a></li></ul></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>最近要集成海康摄像头部署到linux服务器，但是一直调用不到so文件，所以记录下解决过程，<br>由于自己不熟悉jna，所以请轻喷，<strong>Stay Hungry,Stay Foolish.</strong></p>
+<p><a href="https://www.hikvision.com/cn/download_61.html" target="_blank" rel="noopener">海康sdk官方下载地址</a></p>
+<h4 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h4><p><strong><strong>至于为什么先讲linux等下就知道了</strong></strong>，linux的sdk下载下来目录如下：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdnimg.cn/20200528173418663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-Ra7VlK6d-1590658348978)(C:UsersAdministratorAppDataRoamingTypora	ypora-user-imagesimage-20200528163929984.png)]" title="">
+                </div>
+                <div class="image-caption">[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-Ra7VlK6d-1590658348978)(C:UsersAdministratorAppDataRoamingTypora	ypora-user-imagesimage-20200528163929984.png)]</div>
+            </figure>
+
+<p>开发文档有自己的业务需求就看对应的开放文档</p>
+<p><strong>我们直接看LinuxJavaDemo文件夹</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdnimg.cn/20200528173443515.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p><strong>这边我选择的是方法一，但是不是在系统的/usr/lib文件下，自己新建的文件夹</strong></p>
+<h4 id="linux准备工作"><a href="#linux准备工作" class="headerlink" title="linux准备工作"></a>linux准备工作</h4><ol>
+<li><p>linux下搭配jdk1.8，我这边linux服务器新建了一个目录（<strong>/home/opt/hcnet</strong>）来存放下面的so文件</p>
+</li>
+<li><p>上传文件到linux目录下  就是图中的lib文件,<strong>所有的都上传到你的linux目录</strong> </p>
+<p><img src="https://img-blog.csdnimg.cn/20200528173517359.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>创建lib文件夹引入sdk包中的examples.jar和jna.jar<br><img src="https://img-blog.csdnimg.cn/20200528173551673.png" alt="在这里插入图片描述"><br>在pom中添加 不然会报错</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.sun.jna<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>yx<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;project.basedir&#125;/lib/jna.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.sun.jna.examples<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>yx<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;project.basedir&#125;/lib/examples.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>打包添加如下配置<br><img src="https://img-blog.csdnimg.cn/20200528173624768.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>开始集成</p>
+<p><strong>将linux中的HCNetSDK.java放到项目中，修改代码，将他初始化的地方注释掉，我们自己初始化</strong></p>
+</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdnimg.cn/20200528173635709.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>下面就是自己的初始化代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yx.hkdemo.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.sun.jna.Native;</span><br><span class="line"><span class="keyword">import</span> com.sun.jna.NativeLong;</span><br><span class="line"><span class="keyword">import</span> com.sun.jna.Platform;</span><br><span class="line"><span class="keyword">import</span> com.yx.hkdemo.HCNetSDK;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ：tangfan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> ：Created in 2020/5/25 17:36</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>：</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@modified</span> By：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetHCNetSdk</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> HCNetSDK hcNetSDK = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//windows下的路径</span></span><br><span class="line">    String PATH_WIN = System.getProperty(<span class="string">"user.dir"</span>) + File.separator + <span class="string">"hkwinlib"</span> + File.separator + <span class="string">"HCNetSDK"</span>;</span><br><span class="line">    String PATH_LINUX = <span class="string">"/home/opt/hcnet/libhcnetsdk.so"</span>;</span><br><span class="line">    <span class="keyword">private</span> HCNetSDK.NET_DVR_DEVICEINFO_V30 deviceInfo;<span class="comment">//设备信息</span></span><br><span class="line">    <span class="keyword">private</span> NativeLong lUserID;<span class="comment">//用户句柄</span></span><br><span class="line">    <span class="keyword">private</span> NativeLong lAlarmHandle;<span class="comment">//报警布防句柄</span></span><br><span class="line">    <span class="comment">//    private HCNetSDK.FMSGCallBack_V31 fMSFCallBack_V31;//报警回调函数实现</span></span><br><span class="line">    <span class="keyword">private</span> HCNetSDK.FMSGCallBack fMSFCallBack;<span class="comment">//报警回调函数实现</span></span><br><span class="line">    <span class="keyword">private</span> String deviceIP;<span class="comment">//已登录设备的IP地址</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> devicePort;<span class="comment">//设备端口号</span></span><br><span class="line">    <span class="keyword">private</span> String username;<span class="comment">//设备用户名</span></span><br><span class="line">    <span class="keyword">private</span> String password;<span class="comment">//设备登陆密码</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> init_flag;<span class="comment">//初始化识别标志</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> reg_flag;<span class="comment">//设备注册识别标志</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GetHCNetSdk</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        install();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">install</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (Platform.isWindows()) &#123;</span><br><span class="line">            hcNetSDK = (HCNetSDK) Native.loadLibrary(PATH_WIN, HCNetSDK<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (Platform.isLinux()) &#123;</span><br><span class="line">            hcNetSDK = (HCNetSDK) Native.loadLibrary(PATH_LINUX, HCNetSDK<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>如果在linux上运行报错，请在linux下的hcNetSDK = (HCNetSDK) Native.loadLibrary(PATH_LINUX, HCNetSDK.class);后面加入官方的这段代码，并且修改成自己的路径，我的是/home/opt/hcnet</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdnimg.cn/20200528173704738.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p><strong>代码在下面：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">//设置HCNetSDKCom组件库所在路径</span></span><br><span class="line"><span class="comment">//        /home/opt/hcnet/libhcnetsdk.so</span></span><br><span class="line"><span class="comment">//        /home/opt/hcnet</span></span><br><span class="line">            String strPathCom = <span class="string">"/home/opt/hcnet"</span>;</span><br><span class="line">            HCNetSDK.NET_DVR_LOCAL_SDK_PATH struComPath = <span class="keyword">new</span> HCNetSDK.NET_DVR_LOCAL_SDK_PATH();</span><br><span class="line">            System.arraycopy(strPathCom.getBytes(), <span class="number">0</span>, struComPath.sPath, <span class="number">0</span>, strPathCom.length());</span><br><span class="line">            struComPath.write();</span><br><span class="line">            hcNetSDK.NET_DVR_SetSDKInitCfg(<span class="number">2</span>, struComPath.getPointer());</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置libcrypto.so所在路径</span></span><br><span class="line">            HCNetSDK.BYTE_ARRAY ptrByteArrayCrypto = <span class="keyword">new</span> HCNetSDK.BYTE_ARRAY(<span class="number">256</span>);</span><br><span class="line">            String strPathCrypto = <span class="string">"/home/opt/hcnet/libcrypto.so"</span>;</span><br><span class="line">            System.arraycopy(strPathCrypto.getBytes(), <span class="number">0</span>, ptrByteArrayCrypto.byValue, <span class="number">0</span>, strPathCrypto.length());</span><br><span class="line">            ptrByteArrayCrypto.write();</span><br><span class="line">            hcNetSDK.NET_DVR_SetSDKInitCfg(<span class="number">3</span>, ptrByteArrayCrypto.getPointer());</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置libssl.so所在路径</span></span><br><span class="line">            HCNetSDK.BYTE_ARRAY ptrByteArraySsl = <span class="keyword">new</span> HCNetSDK.BYTE_ARRAY(<span class="number">256</span>);</span><br><span class="line">            String strPathSsl = <span class="string">"/home/opt/hcnet/libssl.so"</span>;</span><br><span class="line">            System.arraycopy(strPathSsl.getBytes(), <span class="number">0</span>, ptrByteArraySsl.byValue, <span class="number">0</span>, strPathSsl.length());</span><br><span class="line">            ptrByteArraySsl.write();</span><br><span class="line">            hcNetSDK.NET_DVR_SetSDKInitCfg(<span class="number">4</span>, ptrByteArraySsl.getPointer());</span><br></pre></td></tr></table></figure>
+
+
+
+
+<ol start="5">
+<li>编写工具类，自己写方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yx.hkdemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.sun.jna.NativeLong;</span><br><span class="line"><span class="keyword">import</span> com.sun.jna.Pointer;</span><br><span class="line"><span class="keyword">import</span> com.sun.jna.ptr.IntByReference;</span><br><span class="line"><span class="keyword">import</span> com.sun.jna.ptr.NativeLongByReference;</span><br><span class="line"><span class="keyword">import</span> lombok.AllArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> lombok.NoArgsConstructor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">//import org.apache.commons.lang.StringUtils;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//import cc.eguid.FFmpegCommandManager.FFmpegManager;</span></span><br><span class="line"><span class="comment">//import cc.eguid.FFmpegCommandManager.FFmpegManagerImpl;</span></span><br><span class="line"><span class="comment">//import com.dfzx.common.util.CommonKit;</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HCNetTools</span> </span>&#123;</span><br><span class="line">    HCNetSDK hCNetSDK = <span class="keyword">null</span>;</span><br><span class="line">    HCNetSDK.NET_DVR_DEVICEINFO_V30 m_strDeviceInfo;<span class="comment">//设备信息</span></span><br><span class="line">    HCNetSDK.NET_DVR_IPPARACFG m_strIpparaCfg;<span class="comment">//IP参数</span></span><br><span class="line">    HCNetSDK.NET_DVR_CLIENTINFO m_strClientInfo;<span class="comment">//用户参数</span></span><br><span class="line">    <span class="keyword">boolean</span> bRealPlay;<span class="comment">//是否在预览.</span></span><br><span class="line">    String m_sDeviceIP;<span class="comment">//已登录设备的IP地址</span></span><br><span class="line">    NativeLong lUserID;<span class="comment">//用户句柄</span></span><br><span class="line">    NativeLong lPreviewHandle;<span class="comment">//预览句柄</span></span><br><span class="line">    NativeLongByReference m_lPort;<span class="comment">//回调预览时播放库端口指针</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HCNetTools</span><span class="params">(HCNetSDK sdk)</span> </span>&#123;</span><br><span class="line">        JPopupMenu.setDefaultLightWeightPopupEnabled(<span class="keyword">false</span>);<span class="comment">//防止被播放窗口(AWT组件)覆盖</span></span><br><span class="line">        lUserID = <span class="keyword">new</span> NativeLong(-<span class="number">1</span>);</span><br><span class="line">        lPreviewHandle = <span class="keyword">new</span> NativeLong(-<span class="number">1</span>);</span><br><span class="line">        m_lPort = <span class="keyword">new</span> NativeLongByReference(<span class="keyword">new</span> NativeLong(-<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">this</span>.hCNetSDK = sdk;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//    FFmpegManager manager;//rstp转rmtp工具</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//FRealDataCallBack fRealDataCallBack;//预览回调函数实现</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HCNetTools</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        JPopupMenu.setDefaultLightWeightPopupEnabled(<span class="keyword">false</span>);<span class="comment">//防止被播放窗口(AWT组件)覆盖</span></span><br><span class="line">        lUserID = <span class="keyword">new</span> NativeLong(-<span class="number">1</span>);</span><br><span class="line">        lPreviewHandle = <span class="keyword">new</span> NativeLong(-<span class="number">1</span>);</span><br><span class="line">        m_lPort = <span class="keyword">new</span> NativeLongByReference(<span class="keyword">new</span> NativeLong(-<span class="number">1</span>));</span><br><span class="line">        <span class="comment">//fRealDataCallBack= new FRealDataCallBack();</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化资源配置</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">initDevices</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!hCNetSDK.NET_DVR_Init()) <span class="keyword">return</span> <span class="number">1</span>;<span class="comment">//初始化失败</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设备注册</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> name     设备用户名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> password 设备登录密码</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ip       IP地址</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> port     端口</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deviceRegist</span><span class="params">(String name, String password, String ip, String port)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (bRealPlay) &#123;<span class="comment">//判断当前是否在预览</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>;<span class="comment">//"注册新用户请先停止当前预览";</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (lUserID.longValue() &gt; -<span class="number">1</span>) &#123;<span class="comment">//先注销,在登录</span></span><br><span class="line">            hCNetSDK.NET_DVR_Logout_V30(lUserID);</span><br><span class="line">            lUserID = <span class="keyword">new</span> NativeLong(-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"注册里面:lUserId:"</span>+lUserID);</span><br><span class="line">        <span class="comment">//注册(既登录设备)开始</span></span><br><span class="line">        m_sDeviceIP = ip;</span><br><span class="line">        m_strDeviceInfo = <span class="keyword">new</span> HCNetSDK.NET_DVR_DEVICEINFO_V30();<span class="comment">//获取设备参数结构</span></span><br><span class="line">        System.out.println(<span class="string">"注册里面：ip:"</span>+m_sDeviceIP+<span class="string">"     info:"</span>+m_strDeviceInfo);</span><br><span class="line">        lUserID = hCNetSDK.NET_DVR_Login_V30(m_sDeviceIP, (<span class="keyword">short</span>) Integer.parseInt(<span class="string">"8000"</span>), name, password, m_strDeviceInfo);<span class="comment">//登录设备</span></span><br><span class="line"><span class="comment">//        NativeLong lUserID, int dwCommand, NativeLong lChannel, Pointer lpInBuffer, int dwInBufferSize</span></span><br><span class="line">        System.out.println(<span class="string">"登录后的id"</span>+lUserID);</span><br><span class="line">        <span class="keyword">int</span> i = hCNetSDK.NET_DVR_GetLastError();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"登录错误代码："</span>+i);</span><br><span class="line">        m_strIpparaCfg = <span class="keyword">new</span> HCNetSDK.NET_DVR_IPPARACFG();</span><br><span class="line">        Pointer lpIpParaConfig = m_strIpparaCfg.getPointer();</span><br><span class="line">        <span class="keyword">boolean</span> b = hCNetSDK.NET_DVR_SetDVRConfig(lUserID, HCNetSDK.NET_DVR_GET_IPPARACFG, <span class="keyword">new</span> NativeLong(<span class="number">0</span>), lpIpParaConfig, m_strIpparaCfg.size());</span><br><span class="line">        <span class="keyword">int</span> seti = hCNetSDK.NET_DVR_GetLastError();</span><br><span class="line">        System.out.println(<span class="string">"setConfig"</span>+seti);</span><br><span class="line">        System.out.println(<span class="string">"b:"</span>+b);</span><br><span class="line">        <span class="keyword">long</span> userID = lUserID.longValue();</span><br><span class="line">        System.out.println(<span class="string">"注册里面：userId:"</span>+userID);</span><br><span class="line">        <span class="keyword">if</span> (userID == -<span class="number">1</span>) &#123;</span><br><span class="line">            m_sDeviceIP = <span class="string">""</span>;<span class="comment">//登录未成功,IP置为空</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">3</span>;<span class="comment">//"注册失败";</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取设备通道</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getChannelNumber</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        IntByReference ibrBytesReturned = <span class="keyword">new</span> IntByReference(<span class="number">0</span>);<span class="comment">//获取IP接入配置参数</span></span><br><span class="line">        <span class="keyword">boolean</span> bRet = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> iChannelNum = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        m_strIpparaCfg = <span class="keyword">new</span> HCNetSDK.NET_DVR_IPPARACFG();</span><br><span class="line">        m_strIpparaCfg.write();</span><br><span class="line">        Pointer lpIpParaConfig = m_strIpparaCfg.getPointer();</span><br><span class="line"></span><br><span class="line">        bRet = hCNetSDK.NET_DVR_GetDVRConfig(lUserID, HCNetSDK.NET_DVR_GET_IPPARACFG, <span class="keyword">new</span> NativeLong(<span class="number">0</span>), lpIpParaConfig, m_strIpparaCfg.size(), ibrBytesReturned);</span><br><span class="line">        <span class="keyword">int</span> geti = hCNetSDK.NET_DVR_GetLastError();</span><br><span class="line">        System.out.println(<span class="string">"geti:"</span>+geti);</span><br><span class="line">        m_strIpparaCfg.read();</span><br><span class="line"></span><br><span class="line">        String devices = <span class="string">""</span>;</span><br><span class="line">        System.out.println(<span class="string">"bRet:"</span>+bRet);</span><br><span class="line">        <span class="keyword">if</span> (!bRet) &#123;</span><br><span class="line">            <span class="comment">//设备不支持,则表示没有IP通道</span></span><br><span class="line">            System.out.println(<span class="string">"C:"</span>+m_strDeviceInfo.byChanNum);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> iChannum = <span class="number">0</span>; iChannum &lt; m_strDeviceInfo.byChanNum; iChannum++) &#123;</span><br><span class="line">                devices = <span class="string">"Camera"</span> + (iChannum + m_strDeviceInfo.byStartChan);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"IP"</span>+HCNetSDK.MAX_IP_CHANNEL);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> iChannum = <span class="number">0</span>; iChannum &lt; HCNetSDK.MAX_IP_CHANNEL; iChannum++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (m_strIpparaCfg.struIPChanInfo[iChannum].byEnable == <span class="number">1</span>) &#123;</span><br><span class="line">                    devices = <span class="string">"IPCamera"</span> + (iChannum + m_strDeviceInfo.byStartChan);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"通道："</span>+devices);</span><br><span class="line">        <span class="keyword">if</span> (devices != <span class="keyword">null</span> &amp;&amp; devices != <span class="string">""</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (devices.charAt(<span class="number">0</span>) == <span class="string">'C'</span>) &#123;<span class="comment">//Camara开头表示模拟通道</span></span><br><span class="line">                <span class="comment">//子字符串中获取通道号</span></span><br><span class="line">                System.out.println(<span class="string">"C"</span>);</span><br><span class="line">                iChannelNum = Integer.parseInt(devices.substring(<span class="number">6</span>));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (devices.charAt(<span class="number">0</span>) == <span class="string">'I'</span>) &#123;<span class="comment">//IPCamara开头表示IP通道</span></span><br><span class="line">                    System.out.println(<span class="string">"I"</span>);</span><br><span class="line">                    <span class="comment">//子字符创中获取通道号,IP通道号要加32</span></span><br><span class="line">                    iChannelNum = Integer.parseInt(devices.substring(<span class="number">8</span>)) + <span class="number">32</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> iChannelNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取通道信号状态</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> channum</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSignalStatus</span><span class="params">(<span class="keyword">int</span> channum)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取设备状态</span></span><br><span class="line">        HCNetSDK.NET_DVR_WORKSTATE_V30 devwork = <span class="keyword">new</span> HCNetSDK.NET_DVR_WORKSTATE_V30();</span><br><span class="line">        <span class="keyword">if</span> (!hCNetSDK.NET_DVR_GetDVRWorkState_V30(lUserID, devwork)) &#123;</span><br><span class="line">            <span class="comment">//返回Boolean值，判断是否获取设备能力</span></span><br><span class="line">            System.out.println(<span class="string">"返回设备状态失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> devwork.struChanStatic[channum].bySignalStatic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 拍照</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">takePic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//拍照</span></span><br><span class="line">        HCNetSDK.NET_DVR_JPEGPARA strJpeg = <span class="keyword">new</span> HCNetSDK.NET_DVR_JPEGPARA();</span><br><span class="line">        strJpeg.wPicQuality = <span class="number">1</span>; <span class="comment">//图像参数</span></span><br><span class="line">        strJpeg.wPicSize = <span class="number">2</span>;</span><br><span class="line">        String filePath = <span class="string">"E:\\123q.jpg"</span>;</span><br><span class="line">        lPreviewHandle.setValue(m_strDeviceInfo.byStartChan + <span class="number">32</span>);</span><br><span class="line">        <span class="keyword">boolean</span> b = hCNetSDK.NET_DVR_CaptureJPEGPicture(lUserID, lPreviewHandle, strJpeg, filePath);<span class="comment">//尝试用NET_DVR_CaptureJPEGPicture_NEW方法，但不是报43就是JDK崩溃....</span></span><br><span class="line">        <span class="keyword">if</span> (!b) &#123;<span class="comment">//单帧数据捕获图片</span></span><br><span class="line">            System.out.println(<span class="string">"抓拍失败!"</span> + <span class="string">" err: "</span> + hCNetSDK.NET_DVR_GetLastError());</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"抓拍成功"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 释放SDK</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutDownDev</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//如果已经注册,注销</span></span><br><span class="line">        <span class="keyword">if</span> (lUserID.longValue() &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">            hCNetSDK.NET_DVR_Logout_V30(lUserID);</span><br><span class="line">        &#125;</span><br><span class="line">        hCNetSDK.NET_DVR_Cleanup();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>   分别调用就行了</p>
+<p>   Linux下运行成功的截图</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdnimg.cn/2020052817405633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h4 id="win准备和集成"><a href="#win准备和集成" class="headerlink" title="win准备和集成"></a>win准备和集成</h4><p>上面linux都集成好了，windows就只是需要修改一点东西就好了</p>
+<p>因为我下载的是最新的linux SDK所以HCNetSDK.java就不需要做更改</p>
+<ol>
+<li><p>继续新建文件夹 引入win下面的dll文件 全部引入</p>
+<p><img src="https://img-blog.csdnimg.cn/20200528174109430.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<ol start="2">
+<li>因为上面的初始化类判断了linux和windows系统的，所以直接调用就可以了，因为linux下的sdk中的方法和win的方法基本一致，所以直接用就行了<br><img src="https://img-blog.csdnimg.cn/20200528174502106.png" alt="在这里插入图片描述"></li>
+</ol>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><strong>集成linux出现的问题就是加载不到库，在摸索官方的sdk后，终于成功，还是自己太年轻，sdk看得不够多</strong></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-01T04:05:46.132Z" itemprop="dateUpdated">2020-07-01 12:05:46</time>
+</span><br>
+
+
+        
+        Stay hungry，Stay foolish
+        
+    </div>
+    
+    <footer>
+        <a href="https://floatinghua.github.io">
+            <img src="/img/avatar.jpg" alt="Tang">
+            Tang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%B7%E5%BA%B7/" rel="tag">海康</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/07/01/%E4%BD%BF%E7%94%A8java-POI%E5%AF%BC%E5%87%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E6%A0%BC/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">使用java-POI导出自定义表格</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/07/01/springboot2-1-5-%E6%95%B4%E5%90%88es6-3-0/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">springboot2.1.5 整合es6.3.0</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "Y2PNKOVIUdSjd2C5wf59IE0V-gzGzoHsz",
+            appKey: "QwNCGPWWtXdRuxFPhyh7k1MF",
+            avatar: "mm",
+            placeholder: "来啊，快活啊",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        赠人玫瑰,手留余香
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Tang &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'xue hua piao piao！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
