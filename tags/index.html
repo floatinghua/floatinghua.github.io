@@ -1,905 +1,160 @@
-<!DOCTYPE html>
-<html>
-<head>
-    
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>标签 | 唐杠杠的个人博客</title><meta name="description" content="标签"><meta name="keywords" content="java,python,spring,spring,spring-cloud,mysql"><meta name="author" content="Tang,465132483@qq.com"><meta name="copyright" content="Tang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://floatinghua.github.io/tags/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="标签"><meta property="og:url" content="https://floatinghua.github.io/tags/"><meta property="og:site_name" content="唐杠杠的个人博客"><meta property="og:description" content="标签"><meta property="og:image" content="https://floatinghua.github.io/img/avatar.jpg"><meta property="article:published_time" content="2020-09-08T02:19:44.291Z"><meta property="article:modified_time" content="2020-09-08T02:19:44.291Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.1',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime: 'days',
+  date_suffix: {"one_hour":"Just","hours":"hours ago","day":"days ago"},
+  copyright: undefined,
+  ClickShowText: {"text":"青青子,唐杠杠","fontSize":"15px"},
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"Press","message_next":"to bookmark this page"},"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
 
-    
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
 
-    
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
 
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
 
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2020-09-08 10:19:44'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+  }
+}
 
-    <meta charset="utf-8">
-    
-    
-    
-    
-    <title>唐杠杠的个人博客 | Stay hungry,Stay foolish</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#3F51B5">
-    
-    
-    <meta name="keywords" content="show me your code">
-    <meta name="description" content="一个码农">
-<meta property="og:type" content="website">
-<meta property="og:title" content="唐杠杠的个人博客">
-<meta property="og:url" content="https://floatinghua.github.io/tags/index.html">
-<meta property="og:site_name" content="唐杠杠的个人博客">
-<meta property="og:description" content="一个码农">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-01T03:26:28.556Z">
-<meta property="article:modified_time" content="2020-07-01T03:26:28.556Z">
-<meta property="article:author" content="Tang">
-<meta property="article:tag" content="show me your code">
-<meta name="twitter:card" content="summary">
-    
-        <link rel="alternate" type="application/atom+xml" title="唐杠杠的个人博客" href="/atom.xml">
-    
-    <link rel="shortcut icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
-    <script>window.lazyScripts=[]</script>
+var autoChangeMode = 'false'
+var t = saveToLocal.get('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-    <!-- custom head -->
-    
-
-<meta name="generator" content="Hexo 4.2.1"></head>
-
-<body>
-    <div id="loading" class="active"></div>
-
-    <aside id="menu"  >
-  <div class="inner flex-row-vertical">
-    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-        <i class="icon icon-lg icon-close"></i>
-    </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
-      <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
-        </a>
-        <hgroup class="introduce">
-          <h5 class="nickname">Tang</h5>
-          <a href="mailto:465132483@qq.com" title="465132483@qq.com" class="mail">465132483@qq.com</a>
-        </hgroup>
-      </div>
-    </div>
-    <div class="scroll-wrap flex-col">
-      <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                归档
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect active">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                标签
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                分类
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/floatinghua" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://qingqinglab.github.io/" target="_blank" >
-                <i class="icon icon-lg icon-link"></i>
-                青青小仙女
-              </a>
-            </li>
-        
-      </ul>
-    </div>
-  </div>
-</aside>
-
-    <main id="main">
-        <header class="top-header" id="header">
-    <div class="flex-row">
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">Tags</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-    </div>
-</header>
-<header class="content-header tags-header">
-
-    <div class="container fade-scale">
-        <h1 class="title">Tags</h1>
-        <h5 class="subtitle">
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (saveToLocal.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><meta name="generator" content="Hexo 4.2.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">7</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div id="body-wrap"><header class="not-index-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">唐杠杠的个人博客</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="page_site-info"><h1 id="site_title">标签</h1></div></header><main class="layout_page" id="content-inner"><div class="tag-cloud"><div class="tag-cloud__title">Tag - <span class="tag-cloud__amount">10</span></div><div class="tag-cloud-tags"><a href='/tags/api/' style='font-size:1.62em; color:rgb(130, 150, 41)'>api</a><a href='/tags/elasticsearch/' style='font-size:1.51em; color:rgb(187, 70, 8)'>elasticsearch</a><a href='/tags/poi/' style='font-size:1.71em; color:rgb(54, 83, 67)'>poi</a><a href='/tags/springboot/' style='font-size:1.19em; color:rgb(77, 69, 162)'>springboot</a><a href='/tags/%E5%B7%A5%E5%85%B7/' style='font-size:2.07em; color:rgb(192, 152, 63)'>工具</a><a href='/tags/%E6%95%B4%E5%90%88/' style='font-size:1.68em; color:rgb(163, 200, 67)'>整合</a><a href='/tags/%E6%A1%86%E6%9E%B6/' style='font-size:2.06em; color:rgb(11, 33, 197)'>框架</a><a href='/tags/%E6%B5%B7%E5%BA%B7/' style='font-size:2.09em; color:rgb(117, 26, 38)'>海康</a><a href='/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/' style='font-size:1.04em; color:rgb(82, 35, 36)'>设计模式</a><a href='/tags/%E9%9B%86%E6%88%90/' style='font-size:1.06em; color:rgb(121, 124, 46)'>集成</a></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Tang</div><div class="author-info__description">一个码农</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">10</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">6</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://github.com/floatinghua" target="_blank" rel="noopener"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/floatinghua" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:floating97@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="sticky_layout"><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">you konw just code</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/08/28/picgo%E5%A4%84%E7%90%86%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/" title="picgo处理hexo博客图片问题"><img src="https://gitee.com/float97/wutang-imgs/raw/master/20200908135842.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="picgo处理hexo博客图片问题"/></a><div class="content"><a class="title" href="/2020/08/28/picgo%E5%A4%84%E7%90%86%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/" title="picgo处理hexo博客图片问题">picgo处理hexo博客图片问题</a><time datetime="2020-08-28T08:52:09.000Z" title="Created 2020-08-28 16:52:09">2020-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/08/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="设计模式——单例模式"><img src="https://gitee.com/float97/wutang-imgs/raw/master/20200908140530.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="设计模式——单例模式"/></a><div class="content"><a class="title" href="/2020/08/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="设计模式——单例模式">设计模式——单例模式</a><time datetime="2020-08-10T05:49:17.000Z" title="Created 2020-08-10 13:49:17">2020-08-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/08/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" title="'设计模式——工厂模式'"><img src="https://gitee.com/float97/wutang-imgs/raw/master/20200908140530.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="'设计模式——工厂模式'"/></a><div class="content"><a class="title" href="/2020/08/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" title="'设计模式——工厂模式'">'设计模式——工厂模式'</a><time datetime="2020-08-05T07:54:33.000Z" title="Created 2020-08-05 15:54:33">2020-08-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/07/01/%E4%BD%BF%E7%94%A8java-POI%E5%AF%BC%E5%87%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E6%A0%BC/" title="使用java-POI导出自定义表格"><img src="https://gitee.com/float97/wutang-imgs/raw/master/20200908135959.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用java-POI导出自定义表格"/></a><div class="content"><a class="title" href="/2020/07/01/%E4%BD%BF%E7%94%A8java-POI%E5%AF%BC%E5%87%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E6%A0%BC/" title="使用java-POI导出自定义表格">使用java-POI导出自定义表格</a><time datetime="2020-07-01T03:39:26.000Z" title="Created 2020-07-01 11:39:26">2020-07-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/07/01/Linux%E5%92%8CWindows%E4%B8%8B%E9%9B%86%E6%88%90%E6%B5%B7%E5%BA%B7%E6%91%84%E5%83%8F%E5%A4%B4-%E7%89%B9%E5%88%AB%E8%A7%A3%E5%86%B3linux%E5%8A%A0%E8%BD%BD%E4%B8%8D%E5%88%B0%E5%BA%93/" title="Linux和Windows下集成海康摄像头(特别解决linux加载不到库)"><img src="https://img-blog.csdnimg.cn/20200528174109430.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQxNzIxMQ==,size_16,color_FFFFFF,t_70" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux和Windows下集成海康摄像头(特别解决linux加载不到库)"/></a><div class="content"><a class="title" href="/2020/07/01/Linux%E5%92%8CWindows%E4%B8%8B%E9%9B%86%E6%88%90%E6%B5%B7%E5%BA%B7%E6%91%84%E5%83%8F%E5%A4%B4-%E7%89%B9%E5%88%AB%E8%A7%A3%E5%86%B3linux%E5%8A%A0%E8%BD%BD%E4%B8%8D%E5%88%B0%E5%BA%93/" title="Linux和Windows下集成海康摄像头(特别解决linux加载不到库)">Linux和Windows下集成海康摄像头(特别解决linux加载不到库)</a><time datetime="2020-07-01T03:38:55.000Z" title="Created 2020-07-01 11:38:55">2020-07-01</time></div></div></div></div></div><div class="card-widget card-newest-comments"><div class="card-content"><div class="item-headline"><i class="fas fa-bolt"></i><span>Newest Comments</span></div><div class="aside-list"><span>loading...</span></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>Categories</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/elasticsearch/"><span class="card-category-list-name">elasticsearch</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/java/"><span class="card-category-list-name">java</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/linux/"><span class="card-category-list-name">linux</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/spring/"><span class="card-category-list-name">spring</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="card-category-list-name">设计模式</span><span class="card-category-list-count">2</span></a></li>
             
-        </h5>
-    </div>
-
-    
-<div class="tabs-bar container">
-    <nav class="tags-list">
-        <a href="/tags" style="-webkit-order:-1;order:-1" class="tags-list-item waves-effect waves-button waves-light
-             active">All</a>
-        
-
-            <a href="/tags/%E6%95%B4%E5%90%88/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light">整合</a>
-
-        
-
-            <a href="/tags/api/" style="-webkit-order:1;order:1" class="tags-list-item waves-effect waves-button waves-light">api</a>
-
-        
-
-            <a href="/tags/%E5%B7%A5%E5%85%B7/" style="-webkit-order:2;order:2" class="tags-list-item waves-effect waves-button waves-light">工具</a>
-
-        
-
-            <a href="/tags/springboot/" style="-webkit-order:3;order:3" class="tags-list-item waves-effect waves-button waves-light">springboot</a>
-
-        
-
-            <a href="/tags/%E9%9B%86%E6%88%90/" style="-webkit-order:4;order:4" class="tags-list-item waves-effect waves-button waves-light">集成</a>
-
-        
-
-            <a href="/tags/%E6%B5%B7%E5%BA%B7/" style="-webkit-order:5;order:5" class="tags-list-item waves-effect waves-button waves-light">海康</a>
-
-        
-
-            <a href="/tags/poi/" style="-webkit-order:6;order:6" class="tags-list-item waves-effect waves-button waves-light">poi</a>
-
-        
-
-            <a href="/tags/%E6%A1%86%E6%9E%B6/" style="-webkit-order:7;order:7" class="tags-list-item waves-effect waves-button waves-light">框架</a>
-
-        
-
-            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="-webkit-order:8;order:8" class="tags-list-item waves-effect waves-button waves-light">设计模式</a>
-
-        
-    </nav>
-    <!-- PC show more-->
-    <div class="tags-list-more">
-        <a href="javascript:;" onclick="BLOG.tabBar(this)" class="action tags-list-item waves-effect waves-circle waves-light"><i class="icon icon-ellipsis-h"></i></a>
-    </div>
-</div>
-
-
-
-</header>
-
-<div class="container body-wrap fade">
-    
-
-            <h3 class="archive-separator" id="tag-整合">整合</h3>
-
-            <div class="waterfall">
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-07-01 11:37:21" datetime="2020-07-01T03:37:21.000Z"  itemprop="datePublished">2020-07-01</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/elasticsearch/">elasticsearch</a></li></ul></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/07/01/springboot2-1-5-%E6%95%B4%E5%90%88es6-3-0/">springboot2.1.5 整合es6.3.0</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B4%E5%90%88/" rel="tag">整合</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-08-28 16:52:09" datetime="2020-08-28T08:52:09.000Z"  itemprop="datePublished">2020-08-28</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/08/28/picgo%E5%A4%84%E7%90%86%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/">picgo处理博客图片问题</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B4%E5%90%88/" rel="tag">整合</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-            </div>
-            
-
-            <h3 class="archive-separator" id="tag-api">api</h3>
-
-            <div class="waterfall">
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-07-01 11:37:21" datetime="2020-07-01T03:37:21.000Z"  itemprop="datePublished">2020-07-01</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/elasticsearch/">elasticsearch</a></li></ul></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/07/01/springboot2-1-5-%E6%95%B4%E5%90%88es6-3-0/">springboot2.1.5 整合es6.3.0</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B4%E5%90%88/" rel="tag">整合</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-07-01 11:39:26" datetime="2020-07-01T03:39:26.000Z"  itemprop="datePublished">2020-07-01</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/07/01/%E4%BD%BF%E7%94%A8java-POI%E5%AF%BC%E5%87%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E6%A0%BC/">使用java-POI导出自定义表格</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/poi/" rel="tag">poi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-            </div>
-            
-
-            <h3 class="archive-separator" id="tag-工具">工具</h3>
-
-            <div class="waterfall">
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-07-01 11:37:21" datetime="2020-07-01T03:37:21.000Z"  itemprop="datePublished">2020-07-01</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/elasticsearch/">elasticsearch</a></li></ul></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/07/01/springboot2-1-5-%E6%95%B4%E5%90%88es6-3-0/">springboot2.1.5 整合es6.3.0</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B4%E5%90%88/" rel="tag">整合</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-07-01 11:38:55" datetime="2020-07-01T03:38:55.000Z"  itemprop="datePublished">2020-07-01</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/linux/">linux</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/linux/%E8%BF%90%E7%BB%B4/">运维</a></li></ul></li></ul></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/07/01/Linux%E5%92%8CWindows%E4%B8%8B%E9%9B%86%E6%88%90%E6%B5%B7%E5%BA%B7%E6%91%84%E5%83%8F%E5%A4%B4-%E7%89%B9%E5%88%AB%E8%A7%A3%E5%86%B3linux%E5%8A%A0%E8%BD%BD%E4%B8%8D%E5%88%B0%E5%BA%93/">Linux和Windows下集成海康摄像头(特别解决linux加载不到库)</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%B7%E5%BA%B7/" rel="tag">海康</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-07-01 11:39:26" datetime="2020-07-01T03:39:26.000Z"  itemprop="datePublished">2020-07-01</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/07/01/%E4%BD%BF%E7%94%A8java-POI%E5%AF%BC%E5%87%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E6%A0%BC/">使用java-POI导出自定义表格</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/poi/" rel="tag">poi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-08-28 16:52:09" datetime="2020-08-28T08:52:09.000Z"  itemprop="datePublished">2020-08-28</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/08/28/picgo%E5%A4%84%E7%90%86%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/">picgo处理博客图片问题</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B4%E5%90%88/" rel="tag">整合</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-            </div>
-            
-
-            <h3 class="archive-separator" id="tag-springboot">springboot</h3>
-
-            <div class="waterfall">
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-07-01 11:37:21" datetime="2020-07-01T03:37:21.000Z"  itemprop="datePublished">2020-07-01</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/elasticsearch/">elasticsearch</a></li></ul></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/07/01/springboot2-1-5-%E6%95%B4%E5%90%88es6-3-0/">springboot2.1.5 整合es6.3.0</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B4%E5%90%88/" rel="tag">整合</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-07-01 11:38:55" datetime="2020-07-01T03:38:55.000Z"  itemprop="datePublished">2020-07-01</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/linux/">linux</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/linux/%E8%BF%90%E7%BB%B4/">运维</a></li></ul></li></ul></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/07/01/Linux%E5%92%8CWindows%E4%B8%8B%E9%9B%86%E6%88%90%E6%B5%B7%E5%BA%B7%E6%91%84%E5%83%8F%E5%A4%B4-%E7%89%B9%E5%88%AB%E8%A7%A3%E5%86%B3linux%E5%8A%A0%E8%BD%BD%E4%B8%8D%E5%88%B0%E5%BA%93/">Linux和Windows下集成海康摄像头(特别解决linux加载不到库)</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%B7%E5%BA%B7/" rel="tag">海康</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-            </div>
-            
-
-            <h3 class="archive-separator" id="tag-集成">集成</h3>
-
-            <div class="waterfall">
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-07-01 11:38:55" datetime="2020-07-01T03:38:55.000Z"  itemprop="datePublished">2020-07-01</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/linux/">linux</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/linux/%E8%BF%90%E7%BB%B4/">运维</a></li></ul></li></ul></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/07/01/Linux%E5%92%8CWindows%E4%B8%8B%E9%9B%86%E6%88%90%E6%B5%B7%E5%BA%B7%E6%91%84%E5%83%8F%E5%A4%B4-%E7%89%B9%E5%88%AB%E8%A7%A3%E5%86%B3linux%E5%8A%A0%E8%BD%BD%E4%B8%8D%E5%88%B0%E5%BA%93/">Linux和Windows下集成海康摄像头(特别解决linux加载不到库)</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%B7%E5%BA%B7/" rel="tag">海康</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-            </div>
-            
-
-            <h3 class="archive-separator" id="tag-海康">海康</h3>
-
-            <div class="waterfall">
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-07-01 11:38:55" datetime="2020-07-01T03:38:55.000Z"  itemprop="datePublished">2020-07-01</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/linux/">linux</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/linux/%E8%BF%90%E7%BB%B4/">运维</a></li></ul></li></ul></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/07/01/Linux%E5%92%8CWindows%E4%B8%8B%E9%9B%86%E6%88%90%E6%B5%B7%E5%BA%B7%E6%91%84%E5%83%8F%E5%A4%B4-%E7%89%B9%E5%88%AB%E8%A7%A3%E5%86%B3linux%E5%8A%A0%E8%BD%BD%E4%B8%8D%E5%88%B0%E5%BA%93/">Linux和Windows下集成海康摄像头(特别解决linux加载不到库)</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%B7%E5%BA%B7/" rel="tag">海康</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-            </div>
-            
-
-            <h3 class="archive-separator" id="tag-poi">poi</h3>
-
-            <div class="waterfall">
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-07-01 11:39:26" datetime="2020-07-01T03:39:26.000Z"  itemprop="datePublished">2020-07-01</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/07/01/%E4%BD%BF%E7%94%A8java-POI%E5%AF%BC%E5%87%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E6%A0%BC/">使用java-POI导出自定义表格</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/poi/" rel="tag">poi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-            </div>
-            
-
-            <h3 class="archive-separator" id="tag-框架">框架</h3>
-
-            <div class="waterfall">
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-07-01 11:35:38" datetime="2020-07-01T03:35:38.000Z"  itemprop="datePublished">2020-07-01</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/07/01/%E5%88%9D%E8%AF%86spring/">初识spring</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-            </div>
-            
-
-            <h3 class="archive-separator" id="tag-设计模式">设计模式</h3>
-
-            <div class="waterfall">
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-08-10 13:49:17" datetime="2020-08-10T05:49:17.000Z"  itemprop="datePublished">2020-08-10</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/08/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">设计模式——单例模式</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-
-                <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2020-08-05 15:54:33" datetime="2020-08-05T07:54:33.000Z"  itemprop="datePublished">2020-08-05</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2020/08/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">&#39;设计模式——工厂模式&#39;</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-            
-            </div>
-            
-    
-</div>
-
-        <footer class="footer">
-    <div class="top">
-        
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
-
-        <p>
-            
-                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
-        </p>
-    </div>
-    <div class="bottom">
-        <p><span>Tang &copy; 2019 - 2020</span>
-            <span>
-                
-                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
-            </span>
-        </p>
-    </div>
-</footer>
-
-    </main>
-    <div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
-
-
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script>
-var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
-
-
-</script>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
-
-
-
-
-
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-<script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '我去找青青小仙女了哦！';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '(つェ⊂)咦!又好了!';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/api/" style="font-size: 1.1em; color: #999">api</a> <a href="/tags/elasticsearch/" style="font-size: 1.1em; color: #999">elasticsearch</a> <a href="/tags/poi/" style="font-size: 1.1em; color: #999">poi</a> <a href="/tags/springboot/" style="font-size: 1.1em; color: #999">springboot</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.5em; color: #99a9bf">工具</a> <a href="/tags/%E6%95%B4%E5%90%88/" style="font-size: 1.1em; color: #999">整合</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 1.1em; color: #999">框架</a> <a href="/tags/%E6%B5%B7%E5%BA%B7/" style="font-size: 1.1em; color: #999">海康</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.3em; color: #99a1ac">设计模式</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 1.1em; color: #999">集成</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/08/"><span class="card-archive-list-date">August 2020</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">July 2020</span><span class="card-archive-list-count">4</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2019-07-15T04:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">16k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2020-09-08T06:41:44.206Z"></div></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By Tang</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div><div class="footer_custom_text">just code</div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var endLoading = function () {
+  document.body.style.overflow = 'auto';
+  document.getElementById('loading-box').classList.add("loaded")
+}
+window.addEventListener('load',endLoading)</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    window.valine = new Valine({
+      el: '#vcomment',
+      appId: 'Y2PNKOVIUdSjd2C5wf59IE0V-gzGzoHsz# leancloud application app id',
+      appKey: 'QwNCGPWWtXdRuxFPhyh7k1MF# leancloud application app key',
+      placeholder: '来啊，快活啊',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
     });
-})();
-</script>
+    if ('nick,mail') { valine.config.requiredFields= 'nick,mail'.split(',') }
+  }
 
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
 
-
-</body>
-</html>
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script defer="defer" id="ribbon_piao" mobile="true" src="/js/third-party/piao.js"></script><script src="/js/third-party/ClickShowText.js" async="async"></script></div></body></html>
