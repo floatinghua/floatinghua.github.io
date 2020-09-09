@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>hexo双向部署—国内国外</title>
+      <link href="/2020/09/09/hexo%E5%8F%8C%E5%90%91%E9%83%A8%E7%BD%B2%E2%80%94%E5%9B%BD%E5%86%85%E5%9B%BD%E5%A4%96/"/>
+      <url>/2020/09/09/hexo%E5%8F%8C%E5%90%91%E9%83%A8%E7%BD%B2%E2%80%94%E5%9B%BD%E5%86%85%E5%9B%BD%E5%A4%96/</url>
+      
+        <content type="html"><![CDATA[<h4 id="hexo双向部署"><a href="#hexo双向部署" class="headerlink" title="hexo双向部署"></a>hexo双向部署</h4><blockquote><p>前言：因为之前用的是github来实现博客的部署，但是打开速度还是欠缺了点，所以现在改为coding和github的双向部署,分流处理</p></blockquote><h5 id="注册coding"><a href="#注册coding" class="headerlink" title="注册coding"></a>注册coding</h5><p>因为<a href="https://coding.net/" target="_blank" rel="noopener">coding</a>被腾讯收购了，所以微信登录其实还挺方便的，登录后记得绑定登录密码，邮箱，手机号等，等下方便登录，但是coding个人觉得真的bug很多…</p><h5 id="新建coding项目仓库"><a href="#新建coding项目仓库" class="headerlink" title="新建coding项目仓库"></a>新建coding项目仓库</h5><ol><li>选择一个项目模板，我选的第三个</li></ol><p><img src="https://gitee.com/float97/wutang-imgs/raw/master/20200909085827.png" alt="image-20200909085821038"></p><ol start="2"><li>填写基本信息</li></ol><p><img src="https://gitee.com/float97/wutang-imgs/raw/master/20200909085923.png" alt="image-20200909085923104"></p><ol start="3"><li><p>新建代码仓库</p><p><img src="https://gitee.com/float97/wutang-imgs/raw/master/20200909090005.png" alt=""></p></li></ol><p><img src="https://gitee.com/float97/wutang-imgs/raw/master/20200909090105.png" alt="image-20200909090104926"></p><ol start="4"><li><p>拿到仓库地址</p><p><img src="https://gitee.com/float97/wutang-imgs/raw/master/20200909090244.png" alt="image-20200909090244748"></p></li></ol><p>配置hexo的_config.yml</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="comment"># type: ''</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> </span><br><span class="line">    <span class="attr">github:</span> <span class="string">github的仓库地址</span></span><br><span class="line">    <span class="attr">coding:</span> <span class="string">coding的仓库地址</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure><p>然后<code>hexo d</code> 上传部署就行</p><h5 id=""><a href="#" class="headerlink" title=""></a></h5>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>picgo处理hexo博客图片问题</title>
       <link href="/2020/08/28/picgo%E5%A4%84%E7%90%86%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/"/>
       <url>/2020/08/28/picgo%E5%A4%84%E7%90%86%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/</url>
@@ -124,11 +149,11 @@
       
         <tags>
             
-            <tag> 工具 </tag>
-            
             <tag> springboot </tag>
             
             <tag> 集成 </tag>
+            
+            <tag> 工具 </tag>
             
             <tag> 海康 </tag>
             
