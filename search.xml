@@ -31,33 +31,6 @@
     
     
     <entry>
-      <title>python 爬虫导出禅道每天的bug</title>
-      <link href="/2020/09/14/python%E5%AF%BC%E5%87%BA%E6%AF%8F%E5%A4%A9%E7%9A%84bug/"/>
-      <url>/2020/09/14/python%E5%AF%BC%E5%87%BA%E6%AF%8F%E5%A4%A9%E7%9A%84bug/</url>
-      
-        <content type="html"><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote><p>有句话叫做最懒的人是程序员</p><p>因为每天都要写日报，都要打开禅道去复制粘贴，所有觉得很麻烦，就去学了下python,写了个小爬虫，每天导出下自己的bug</p><p>当然大手子看看就好，毕竟python也是现学现用，很多不熟悉的</p></blockquote><h5 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h5><ol><li>我用的是fiddler抓包，来获取我的登录信息这些</li><li><a href="https://www.runoob.com/xpath/xpath-syntax.html" target="_blank" rel="noopener">xpath</a>语法,用来去获得页面上的节点</li><li>一点点的<a href="https://docs.python.org/zh-cn/3.8/tutorial/index.html" target="_blank" rel="noopener">python3</a>基础，就一点点</li></ol><h5 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h5><p>fiddler抓包获得下登录信息</p><p><img src="https://gitee.com/float97/wutang-imgs/raw/master/20200914104759.png" alt="image-20200914104759219"></p><p>然后就直接看代码吧，因为简单</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> http.cookiejar <span class="keyword">as</span> cookielib</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree <span class="comment">#用于xpath</span></span><br><span class="line"><span class="keyword">from</span> easyxlsx <span class="keyword">import</span> SimpleWriter <span class="comment">#用于excel导出</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取session</span></span><br><span class="line">session = requests.session()</span><br><span class="line"><span class="comment"># 因为原始的session.cookies 没有save()方法，所以需要用到cookielib中的方法LWPCookieJar，这个类实例化的cookie对象，就可以直接调用save方法。</span></span><br><span class="line">session.cookies = cookielib.LWPCookieJar(filename=<span class="string">"huihuCookies.txt"</span>)</span><br><span class="line">header = &#123;</span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"</span>,</span><br><span class="line">    <span class="string">"referer"</span>: <span class="string">"/zentao/"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 7fce1c8dbc388855656b6a8f1a41f950</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">"account"</span>: <span class="string">"你的账号</span></span><br><span class="line"><span class="string">    "</span>password<span class="string">": "</span>密码 这里传明文,用后面的加密字符串加密<span class="string">"</span></span><br><span class="line"><span class="string">    "</span>passwordStrength<span class="string">": 1,</span></span><br><span class="line"><span class="string">    "</span>keepLogin<span class="string">": 0,</span></span><br><span class="line"><span class="string">    "</span>verifyRand<span class="string">": "</span>加密字符串<span class="string">"</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">resp = session.post("</span>http://<span class="number">49.4</span><span class="number">.71</span><span class="number">.9</span>:<span class="number">30000</span>/zentao/user-login.html<span class="string">", data=data, headers=header)</span></span><br><span class="line"><span class="string"># print(resp.status_code)</span></span><br><span class="line"><span class="string"># 导出的集合</span></span><br><span class="line"><span class="string">l = []</span></span><br><span class="line"><span class="string">now = time.strftime("</span>%Y/%m/%d<span class="string">", time.localtime())</span></span><br><span class="line"><span class="string">if resp.status_code == 200:</span></span><br><span class="line"><span class="string">    session.cookies.save()</span></span><br><span class="line"><span class="string">    # 访问个人主页测试</span></span><br><span class="line"><span class="string">    # my_profile = session.get("</span>http://<span class="number">49.4</span><span class="number">.71</span><span class="number">.9</span>:<span class="number">30000</span>/zentao/my-profile.html<span class="string">")</span></span><br><span class="line"><span class="string">    # 获取每天解决的bug</span></span><br><span class="line"><span class="string">    today_bugs = session.get("</span>http://<span class="number">49.4</span><span class="number">.71</span><span class="number">.9</span>:<span class="number">30000</span>/zentao/my-dynamic.html<span class="string">")</span></span><br><span class="line"><span class="string">    # xpath语法取得今天所有的bug</span></span><br><span class="line"><span class="string">    today_bugs_html = etree.HTML(today_bugs.text)</span></span><br><span class="line">    content = today_bugs_html.xpath("//span[@class='timeline-text']/a")</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> content:</span><br><span class="line">        li = []</span><br><span class="line">        li.append(<span class="string">"1"</span>)</span><br><span class="line">        li.append(<span class="string">"唐帆"</span>)</span><br><span class="line">        li.append(now)</span><br><span class="line">        li.append(now)</span><br><span class="line">        li.insert(<span class="number">0</span>, i.text)</span><br><span class="line">        l.append(li)</span><br><span class="line">    <span class="keyword">if</span> len(l) &gt; <span class="number">0</span>:</span><br><span class="line">        SimpleWriter(l, headers=(<span class="string">'任务名称'</span>, <span class="string">'权重'</span>, <span class="string">'研发人员'</span>, <span class="string">"预计时间"</span>, <span class="string">"完成时间"</span>),</span><br><span class="line">                     bookname=<span class="string">"C:\\Users\\Administrator\\Desktop\\公司项目\\bugs\\bugs.xlsx"</span>).export()</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> python </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> python </tag>
-            
-            <tag> 爬虫 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>picgo处理hexo博客图片问题</title>
       <link href="/2020/08/28/picgo%E5%A4%84%E7%90%86%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/"/>
       <url>/2020/08/28/picgo%E5%A4%84%E7%90%86%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/</url>
@@ -178,11 +151,11 @@
       
         <tags>
             
+            <tag> 工具 </tag>
+            
             <tag> springboot </tag>
             
             <tag> 集成 </tag>
-            
-            <tag> 工具 </tag>
             
             <tag> 海康 </tag>
             
