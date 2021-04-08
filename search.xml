@@ -20,9 +20,9 @@
       
         <tags>
             
-            <tag> maven </tag>
-            
             <tag> docker </tag>
+            
+            <tag> maven </tag>
             
             <tag> minio </tag>
             
@@ -49,9 +49,9 @@
       
         <tags>
             
-            <tag> git </tag>
-            
             <tag> maven </tag>
+            
+            <tag> git </tag>
             
             <tag> jenkins </tag>
             
@@ -80,9 +80,9 @@
             
             <tag> 工具 </tag>
             
-            <tag> api </tag>
-            
             <tag> itextpdf </tag>
+            
+            <tag> api </tag>
             
         </tags>
       
@@ -107,9 +107,9 @@
       
         <tags>
             
-            <tag> git </tag>
-            
             <tag> python </tag>
+            
+            <tag> git </tag>
             
         </tags>
       
@@ -263,9 +263,9 @@
             
             <tag> 工具 </tag>
             
-            <tag> poi </tag>
-            
             <tag> api </tag>
+            
+            <tag> poi </tag>
             
         </tags>
       
@@ -290,11 +290,11 @@
       
         <tags>
             
+            <tag> 工具 </tag>
+            
             <tag> springboot </tag>
             
             <tag> 集成 </tag>
-            
-            <tag> 工具 </tag>
             
             <tag> 海康 </tag>
             

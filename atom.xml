@@ -33,9 +33,9 @@
     <category term="java" scheme="https://floatinghua.github.io/categories/java/"/>
     
     
-    <category term="maven" scheme="https://floatinghua.github.io/tags/maven/"/>
-    
     <category term="docker" scheme="https://floatinghua.github.io/tags/docker/"/>
+    
+    <category term="maven" scheme="https://floatinghua.github.io/tags/maven/"/>
     
     <category term="minio" scheme="https://floatinghua.github.io/tags/minio/"/>
     
@@ -58,9 +58,9 @@
     <category term="运维" scheme="https://floatinghua.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-    <category term="git" scheme="https://floatinghua.github.io/tags/git/"/>
-    
     <category term="maven" scheme="https://floatinghua.github.io/tags/maven/"/>
+    
+    <category term="git" scheme="https://floatinghua.github.io/tags/git/"/>
     
     <category term="jenkins" scheme="https://floatinghua.github.io/tags/jenkins/"/>
     
@@ -85,9 +85,9 @@
     
     <category term="工具" scheme="https://floatinghua.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
-    <category term="api" scheme="https://floatinghua.github.io/tags/api/"/>
-    
     <category term="itextpdf" scheme="https://floatinghua.github.io/tags/itextpdf/"/>
+    
+    <category term="api" scheme="https://floatinghua.github.io/tags/api/"/>
     
   </entry>
   
@@ -108,9 +108,9 @@
     <category term="python" scheme="https://floatinghua.github.io/categories/python/"/>
     
     
-    <category term="git" scheme="https://floatinghua.github.io/tags/git/"/>
-    
     <category term="python" scheme="https://floatinghua.github.io/tags/python/"/>
+    
+    <category term="git" scheme="https://floatinghua.github.io/tags/git/"/>
     
   </entry>
   
@@ -240,9 +240,9 @@
     
     <category term="工具" scheme="https://floatinghua.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
-    <category term="poi" scheme="https://floatinghua.github.io/tags/poi/"/>
-    
     <category term="api" scheme="https://floatinghua.github.io/tags/api/"/>
+    
+    <category term="poi" scheme="https://floatinghua.github.io/tags/poi/"/>
     
   </entry>
   
@@ -263,11 +263,11 @@
     <category term="linux" scheme="https://floatinghua.github.io/categories/linux/"/>
     
     
+    <category term="工具" scheme="https://floatinghua.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
     <category term="springboot" scheme="https://floatinghua.github.io/tags/springboot/"/>
     
     <category term="集成" scheme="https://floatinghua.github.io/tags/%E9%9B%86%E6%88%90/"/>
-    
-    <category term="工具" scheme="https://floatinghua.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
     <category term="海康" scheme="https://floatinghua.github.io/tags/%E6%B5%B7%E5%BA%B7/"/>
     
